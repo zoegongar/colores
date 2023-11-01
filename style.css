@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* *trabajamos con grid para que se adapte a todo tipo de pantallas */
+body {
+  background-color: var(--color-body);
+  font-family: "Roboto", sans-serif;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header"
+    "container";
+}
+/* *empezamos con el header y simbolos de logro y fallos */
+.vidas-fallos {
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  grid-area: header;
+}
+.aciertos {
+  letter-spacing: 15px;
+}
+.fallos {
+  letter-spacing: 15px;
+}
+
+.material-symbols-outlined {
+  transform: scale(1.7);
+}
+/* *empezamos con el contenedor principal , llevara las cajas de colores y mas contenido  */
+#container {
+  box-shadow: 0px -1px 58px -3px rgba(6, 22, 27, 0.75);
+  -webkit-box-shadow: 0px -1px 58px -3px rgba(6, 22, 27, 0.75);
+  -moz-box-shadow: 0px -1px 58px -3px rgba(6, 22, 27, 0.75);
+  background-color: var(--color-container);
+  grid-area: container;
+  height: 510px;
+  margin: 10px;
+  width: auto;
+}
+.codigo-RGB {
+  height: 70px;
+
+  padding: 5px;
+  text-align: center;
+}
+.codigo-RGB h1 {
+  font-family: var(--font-pixel);
+  letter-spacing: 20px;
+  font-size: 20px;
+}
+.codigo-RGB p {
+  font-size: 30px;
+  letter-spacing: 10px;
+  padding: 5px;
+}
+/* *aqui van las cajas de colores  */
+.cajas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  gap: 5px;
+  height: 290px;
+}
+.caja1 {
+  background-color: rgb(9, 141, 0);
+  height: 100px;
+  width: 200px;
+}
+.caja1:hover {
+  cursor: pointer;
+}
+
+.caja2 {
+  background-color: rgb(106, 255, 0);
+  height: 100px;
+  width: 200px;
+}
+.caja2:hover {
+  cursor: pointer;
+}
+.caja3 {
+  background-color: rgb(179, 255, 0);
+  height: 100px;
+  width: 200px;
+}
+.caja3:hover {
+  cursor: pointer;
+}
+.pie {
+  word-wrap: break-word;
+  height: 90px;
+  text-align: center;
+}
+.pie h1 {
+  font-family: var(--font-pixel);
+}
+.pie p {
+  font-size: 15px;
+}
