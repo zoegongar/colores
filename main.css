@@ -1,0 +1,10 @@
+:root {
+  --color-texto: #262626;
+  --color-container: #f8de22;
+  --color-body: #f94c10;
+  --color-vidas-corazon: #e23991;
+  --font-pixel: "Pixelify Sans", sans-serif;
+}
+html {
+  height: 100%;
+}
