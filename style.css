@@ -46,14 +46,13 @@ body {
 }
 .codigo-RGB {
   height: 70px;
-
-  padding: 5px;
   text-align: center;
+  padding: 10px;
 }
 .codigo-RGB h1 {
   font-family: var(--font-pixel);
   letter-spacing: 20px;
-  font-size: 20px;
+  font-size: 30px;
 }
 .codigo-RGB p {
   font-size: 30px;
@@ -63,7 +62,7 @@ body {
 /* *aqui van las cajas de colores  */
 .cajas {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 20px;
