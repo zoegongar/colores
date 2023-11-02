@@ -44,6 +44,12 @@ function aplicarColores(colores) {
   caja3.style.backgroundColor = colores[2];
 }
 
+//Función que da el array "RGB" del color que hay que adivinar.
+const color_muestra = cajas_colores[0][0];
+const valor_RGB = Object.values(color_muestra)[0];
+const color_a_adivinar = document.getElementById("codigoRGB");
+color_a_adivinar.textContent = valor_RGB;
+
 // Función para seleccionar colores aleatorios pero que los muestra por grupos (los rojos. los amarillos...)
 function seleccionarColoresAleatorios() {
   const coloresAleatorios = cajas_colores[
