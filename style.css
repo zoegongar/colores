@@ -6,7 +6,7 @@
 /* *trabajamos con grid para que se adapte a todo tipo de pantallas */
 body {
   background-color: var(--color-body);
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-roboto);
   min-height: 100%;
   display: grid;
   grid-template-columns: auto;
@@ -22,17 +22,9 @@ body {
   justify-content: space-around;
   align-items: center;
   grid-area: header;
-}
-.aciertos {
-  letter-spacing: 15px;
-}
-.fallos {
-  letter-spacing: 15px;
+  font-size: 20px;
 }
 
-.material-symbols-outlined {
-  transform: scale(1.7);
-}
 /* *empezamos con el contenedor principal , llevara las cajas de colores y mas contenido  */
 #container {
   box-shadow: 0px -1px 58px -3px rgba(6, 22, 27, 0.75);

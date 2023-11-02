@@ -4,6 +4,7 @@
   --color-body: #f94c10;
   --color-vidas-corazon: #e23991;
   --font-pixel: "Pixelify Sans", sans-serif;
+  --font-roboto: "roboto", sans-serif;
 }
 html {
   height: 100%;

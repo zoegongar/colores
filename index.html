@@ -1,19 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index prueba proyecto</title>
-</head>
-<body>
-    <script src="juego-colores.js"></script>
-</body>
-</html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adivina el Color</title>
+    <script src="juego-colores.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,26 +13,14 @@
       href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Pixelify+Sans&family=Roboto:ital,wght@1,300&family=Satisfy&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
   </head>
   <body>
     <header class="vidas-fallos">
-      <div class="aciertos">
-        <span class="material-symbols-outlined"> sentiment_satisfied </span>
-        <span class="material-symbols-outlined"> sentiment_satisfied </span>
-        <span class="material-symbols-outlined"> sentiment_satisfied </span>
+      <div>
+        <span id="emoticonGanar">😃</span>
       </div>
-      <div class="fallos">
-        <span class="material-symbols-outlined"> sentiment_dissatisfied </span>
-        <span class="material-symbols-outlined"> sentiment_dissatisfied </span>
-        <span class="material-symbols-outlined"> sentiment_dissatisfied </span>
+      <div>
+        <span id="emoticonFallar">😔</span>
       </div>
     </header>
     <section id="container">
@@ -67,4 +46,3 @@
     </section>
   </body>
 </html>
-
