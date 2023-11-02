@@ -6,7 +6,7 @@
     <title>index prueba proyecto</title>
 </head>
 <body>
-    <script src="juego-colores.js"></script>
+    <script src="juego-colores.js" type="module"></script>
 </body>
 </html>
 <html lang="es">
@@ -47,14 +47,15 @@
     <section id="container">
       <div class="codigo-RGB">
         <h1>RGB</h1>
-        <p>106,245,0</p>
+        <!-- añado un id para imprimir aqui el codigo -->
+        <p id="codigoRGB">106,245,0</p>
       </div>
       <div class="cajas">
-        <div class="caja1"></div>
-        <div class="caja2"></div>
-        <div class="caja3"></div>
+        <!-- cambio class por id para imprimir color caja en JS -->
+        <div id="caja1"></div>
+        <div id="caja2"></div>
+        <div id="caja3"></div>
       </div>
-
       <footer class="pie">
         <article>
           <h1>ADIVINA EL COLOR</h1>
@@ -67,4 +68,3 @@
     </section>
   </body>
 </html>
-
