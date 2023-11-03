@@ -1,10 +1,9 @@
-"use strict";
 window.addEventListener("load", iniciarJuego);
 
 const cajas_colores = [
   { rojo: "rgb(255, 0, 0)" },
   { verde: "rgb(0, 255, 0)" },
-  { azul: "rgb(0, 0, 255)" },
+  { azul: "rgb(0, 0, 255)" }
 ];
 
 let codigoCorrecto;
@@ -28,7 +27,7 @@ function generarCodigoRGB() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
-  return `(${r}, ${g}, ${b})`;
+  return `rgb(${r}, ${g}, ${b})`;
 }
 
 function generarColores() {
@@ -64,15 +63,15 @@ function asignarEventos() {
   const caja2 = document.getElementById("caja2");
   const caja3 = document.getElementById("caja3");
 
-  caja1.addEventListener("click", function () {
+  caja1.addEventListener("click", function() {
     verificarRespuesta(caja1.style.backgroundColor);
   });
 
-  caja2.addEventListener("click", function () {
+  caja2.addEventListener("click", function() {
     verificarRespuesta(caja2.style.backgroundColor);
   });
 
-  caja3.addEventListener("click", function () {
+  caja3.addEventListener("click", function() {
     verificarRespuesta(caja3.style.backgroundColor);
   });
 }
@@ -106,3 +105,30 @@ function reiniciarJuego() {
   generarCodigo();
   generarColores();
 }
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Juego de Adivinar el Color</title>
+  <style>
+    .caja {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Juego de Adivinar el Color</h1>
+  <p id="codigoRGB">RGB: <span id="codigo"></span></p>
+  <div class="caja" id="caja1"></div>
+  <div class="caja" id="caja2"></div>
+  <div class="caja" id="caja3"></div>
+  <p>Aciertos: <span id="aciertos">0</span></p>
+  <p>Fallos: <span id="fallos">0</span></p>
+
+  <script src="juego.js"></script>
+</body>
+</html>
