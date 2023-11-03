@@ -1,23 +1,9 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-=======
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index prueba proyecto</title>
-</head>
-<body>
-    <script src="juego-colores.js" type="module"></script>
-</body>
-</html>
->>>>>>> main
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adivina el Color</title>
-    <script src="juego-colores.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,20 +16,18 @@
   <body>
     <header class="vidas-fallos">
       <div>
-        <span id="emoticonGanar">😃</span>
+        <p>😃<span id="contador-aciertos"></span></p>
       </div>
       <div>
-        <span id="emoticonFallar">😔</span>
+        <p>😔<span id="contador-fallos"></span></p>
       </div>
     </header>
     <section id="container">
       <div class="codigo-RGB">
         <h1>RGB</h1>
-        <!-- añado un id para imprimir aqui el codigo -->
-        <p id="codigoRGB">106,245,0</p>
+        <p><span id="codigo"></span></p>
       </div>
       <div class="cajas">
-        <!-- cambio class por id para imprimir color caja en JS -->
         <div id="caja1"></div>
         <div id="caja2"></div>
         <div id="caja3"></div>
@@ -58,9 +42,6 @@
         </article>
       </footer>
     </section>
+    <script src="juego-colores.js"></script>
   </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> main

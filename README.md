@@ -1,4 +1,5 @@
 # proyecto1-colores
+
 Juego de Adivinar Colores RGB
 Este es un juego interactivo en el que tendrás que adivinar el color correspondiente a un código dado en RGB. El objetivo es poner a prueba tu capacidad para identificar y visualizar colores.
 
