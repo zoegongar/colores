@@ -1,5 +1,8 @@
 "use strict";
 
+// De momento he puesto que vaya cambiando los colores al cargar la página, yo creo que luego hay que cambiarlo para que sea despues de sumar o quitar puntos*/
+window.addEventListener("load", cargarColores);
+
 const cajas_colores = [
   [
     { rojo_1: "rgb(255, 0, 0)" }, // Roja
@@ -27,8 +30,31 @@ const cajas_colores = [
     { naranja_3: "rgb(255, 185, 50)" }, // Naranja con variación
   ],
 ];
-//función que recorre todas las cajas.
+
+//Función para aplicar colores a las cajas (modifica el html y pone un estilo en linea con background-color: "el que toque")
+function aplicarColores(colores) {
+  //identificamos las cajas que se van a colorear
+  const caja1 = document.getElementById("caja1");
+  const caja2 = document.getElementById("caja2");
+  const caja3 = document.getElementById("caja3");
+
+  //vamos "coloreando" cada caja
+  caja1.style.backgroundColor = colores[0]; //lo de colores 0,1,2 es para que coloree según grupos de color (los violeta, los verdes...)
+  caja2.style.backgroundColor = colores[1];
+  caja3.style.backgroundColor = colores[2];
+}
+
+// Función para seleccionar colores aleatorios pero que los muestra por grupos (los rojos. los amarillos...)
+function seleccionarColoresAleatorios() {
+  const coloresAleatorios = cajas_colores[
+    Math.floor(Math.random() * cajas_colores.length)
+  ].map((variacion) => Object.values(variacion)[0]);
+  return coloresAleatorios;
+}
+
+//Función para recorrer el array de colores y aplicar los colores(guarda en variable los colores aleatorios que obtiene de la funcionseleccionarColoresAleatorios() y esa variable la usa como parámetro en la funcion aplicarColores() para que sepa qué colores tiene que pintar
 function recorrer_array() {
+<<<<<<< HEAD
   for (let i = 0; i < 5; i++) {
     for (let j = 0; j < cajas_colores[i].length; j++) {
       const caja = cajas_colores[i][j];
@@ -85,3 +111,14 @@ if (jugadorGana) {
 } else {
   incrementarFallar();
 }
+=======
+  const coloresAleatorios = seleccionarColoresAleatorios();
+  aplicarColores(coloresAleatorios);
+}
+
+// Función que selecciona colores aleatorios, la llamamos cuando se actualice la página y así vuelve a buscar otro grupo de colores
+function cargarColores() {
+  const coloresAleatorios = seleccionarColoresAleatorios();
+  aplicarColores(coloresAleatorios);
+}
+>>>>>>> main
