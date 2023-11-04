@@ -6,7 +6,7 @@
 /* *trabajamos con grid para que se adapte a todo tipo de pantallas */
 body {
   background-color: var(--color-body);
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-roboto);
   min-height: 100%;
   display: grid;
   grid-template-columns: auto;
@@ -22,23 +22,15 @@ body {
   justify-content: space-around;
   align-items: center;
   grid-area: header;
-}
-.aciertos {
-  letter-spacing: 15px;
-}
-.fallos {
-  letter-spacing: 15px;
+  font-size: 20px;
 }
 
-.material-symbols-outlined {
-  transform: scale(1.7);
-}
 /* *empezamos con el contenedor principal , llevara las cajas de colores y mas contenido  */
 #container {
   box-shadow: 0px -1px 58px -3px rgba(6, 22, 27, 0.75);
   -webkit-box-shadow: 0px -1px 58px -3px rgba(6, 22, 27, 0.75);
   -moz-box-shadow: 0px -1px 58px -3px rgba(6, 22, 27, 0.75);
-  background-color: white;
+  background-color: var(--color-container);
   border-radius: 20px;
   grid-area: container;
   height: 510px;
@@ -52,21 +44,22 @@ body {
   background-color: var(--color-container);
   padding: 5px;
   text-align: center;
+  padding: 10px;
 }
 .codigo-RGB h1 {
   font-family: var(--font-pixel);
   letter-spacing: 20px;
-  font-size: 20px;
-}
-.codigo-RGB p {
   font-size: 30px;
+}
+#codigo {
+  font-size: 15px;
   letter-spacing: 10px;
   padding: 5px;
 }
 /* *aqui van las cajas de colores  */
 .cajas {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 20px;
