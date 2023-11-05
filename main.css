@@ -1,7 +1,8 @@
 :root {
   --color-texto: #262626;
-  --color-container: #f8de22;
-  --color-body: #f94c10;
+  --color-container: #eddf75;
+  --color-body: #fbbeac;
+  --color-vidas-corazon: #e23991;
   --font-pixel: "Pixelify Sans", sans-serif;
   --font-roboto: "roboto", sans-serif;
 }
