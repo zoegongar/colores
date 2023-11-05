@@ -1,143 +1,140 @@
-"use strict";
-
-//Creamos evento para que se ejecute nada más cargar pantalla
 window.addEventListener("load", iniciarJuego);
 
-//Dentro de iniciarJuego() están las otras funciones. Como una funcion llama a otra fuí eliminando funciones de aqui
-function iniciarJuego() {
-  generarCodigoRGB(); //la que pone el texto RGB
-}
+const cajas_colores = [
+  { rojo_1: "rgb(255, 0, 0)" },
+  { rojo_2: "rgb(220, 0, 0)" },
+  { rojo_3: "rgb(255, 50, 50)" },
 
-//Genera un código RGB aleatorio
+  { verde_1: "rgb(0, 128, 0)" },
+  { verde_2: "rgb(0, 100, 0)" },
+  { verde_3: "rgb(50, 150, 50)" },
+
+  { amarillo_1: "rgb(255, 255, 0)" },
+  { amarillo_2: "rgb(220, 220, 0)" },
+  { amarillo_3: "rgb(255, 255, 50)" },
+
+  { violeta_1: "rgb(128, 0, 128)" },
+  { violeta_2: "rgb(100, 0, 100)" },
+  { violeta_3: "rgb(150, 50, 150)" },
+
+  { naranja_1: "rgb(255, 165, 0)" },
+  { naranja_2: "rgb(220, 145, 0)" },
+  { naranja_3: "rgb(255, 185, 50)" },
+];
+let codigoCorrecto;
+let aciertos = 0;
+let fallos = 0;
+//
+// generamos una funcion que llama a las 3 principales
+//
+function iniciarJuego() {
+  generarCodigo();
+  generarColores();
+  asignarEventos();
+}
+//
+// creamos la funcion de generar codigo   asociandola al id del html "codigo"
+//
+function generarCodigo() {
+  const codigoElemento = document.getElementById("codigo");
+  const codigo = generarCodigoRGB();
+  codigoElemento.textContent = codigo;
+  codigoCorrecto = codigo;
+}
+//
+// generamos el codigo rgb
+//
 function generarCodigoRGB() {
-  //Se crean 3 constantes para generar los 3 códigos (r, g y b)
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
-
-  //identificamos en qué parte de HTML va el códigoRGB y lo guardamos en variable llamada CodigoRGB
-  const CodigoRGB = document.getElementById("codigo");
-  //Imprimimos en pantalla el código RGB (la pregunta)
-  CodigoRGB.textContent = `${r}, ${g}, ${b}`;
-
-  //Ejecutamos la funcion que crea colores para pintar las cajas y pasamos valores r g b para usarlos en esa función
-  obtenerColoresAleatorios(r, g, b);
+  return `rgb(${r}, ${g}, ${b})`;
 }
+//
+// funcion que genera los colores y los guarda en las cajas
 
-function obtenerColoresAleatorios(r, g, b) {
-  //Basándonos en el código RGB creado de la funcion generarCodigoRGB() creamos el color correcto (la respuesta que seria correcta) y sus variaciones:
-  const colorCorrecto = `rgb(${r}, ${g}, ${b})`;
-
-  //Creamos 2 variaciones más y así tendríamos 3 colores que pintar en las cajas
-  //En vez de que genere aleatorio le sumamos o restamos valores para que se parezcan
-  const colorVariante1 = `rgb(${r + 15}, ${g - 20}, ${b - 15})`;
-  const colorVariante2 = `rgb(${r - 20}, ${g + 10}, ${b + 10})`;
-
-  //pasamos los colores generados (colorCorrecto, colorVariante1 y colorVariante2) como argumento y llamamos a la función que colorea las cajas
-  generarColores(colorCorrecto, colorVariante1, colorVariante2);
-}
-
-function generarColores(colorCorrecto, colorVariante1, colorVariante2) {
-  //Identificamos dónde tiene que pintar los colores
+function generarColores() {
   const caja1 = document.getElementById("caja1");
   const caja2 = document.getElementById("caja2");
   const caja3 = document.getElementById("caja3");
 
-  //Ahora que sabemos dónde van los colores, pintamos las cajas, los colores los saca de otra funcion, obtenerColoresAleatorios(r, g, b)
-  caja1.style.backgroundColor = colorCorrecto;
-  caja2.style.backgroundColor = colorVariante1;
-  caja3.style.backgroundColor = colorVariante2;
-
-  //Lammamos a la funcion verificar respuesta y le pasamos los colores que tienen las cajas
-  verificarRespuesta(colorCorrecto, colorVariante1, colorVariante2);
+  const colores = obtenerColoresAleatorios();
+  caja1.style.backgroundColor = colores[0];
+  caja2.style.backgroundColor = colores[1];
+  caja3.style.backgroundColor = colores[2];
 }
+//
+// creamos la funcion para obtener los colores aleatoriamente utilizando un bucle ,indice * la cantidad de colores disponibles
+//
+function obtenerColoresAleatorios() {
+  const coloresAleatorios = [];
+  const coloresDisponibles = [...cajas_colores];
+  const indiceCorrecto = Math.floor(Math.random() * 3);
+  coloresAleatorios[indiceCorrecto] = codigoCorrecto;
 
-//Estas variables son para el contador de aciertos y fallos
-let aciertos = 0;
-let fallos = 0;
-
-function verificarRespuesta(colorCorrecto, colorVariante1, colorVariante2) {
-  //Identificamos dónde están los marcadores de acierto/fallo
-  const ContadorAciertos = document.getElementById("contador-aciertos");
-  const ContadorFallos = document.getElementById("contador-fallos");
-
-  caja1.addEventListener("click", () => {
-    //Sumamos 1 si el color corresponde y si contador es menor a 3
-    if (caja1.style.backgroundColor === colorCorrecto && aciertos < 3) {
-      aciertos++;
-      ContadorAciertos.textContent = aciertos;
-      //Si llegamos a 3 aciertos sale un alert y se reinician contadores y juego
-      if (aciertos === 3) {
-        alert("🏆 🏆¡Enhorabuena, has ganado! 🏆 🏆");
-        reiniciarJuego(); //Esta funcion es para reiniciar, quitar eventos y demás
-      }
-    } else if (caja1.style.backgroundColor !== colorCorrecto && fallos < 3) {
-      fallos++;
-      ContadorFallos.textContent = fallos;
-      //Si llegamos a 3 fallos sale un alert y se reinician contadores y juego
-      if (fallos === 3) {
-        alert("💩 💩 BUUUU mantaaa 💩 💩");
-        reiniciarJuego();
-      }
+  for (let i = 0; i < 3; i++) {
+    if (i !== indiceCorrecto) {
+      const indice = Math.floor(Math.random() * coloresDisponibles.length);
+      coloresAleatorios[i] = Object.values(coloresDisponibles[indice])[0];
+      coloresDisponibles.splice(indice, 1);
     }
+  }
+
+  return coloresAleatorios;
+}
+//
+// creamos otra funcion para asignar los eventos cada vez que se haga click y se verifique si es correcto o no
+//
+
+function asignarEventos() {
+  const caja1 = document.getElementById("caja1");
+  const caja2 = document.getElementById("caja2");
+  const caja3 = document.getElementById("caja3");
+
+  caja1.addEventListener("click", function () {
+    verificarRespuesta(caja1.style.backgroundColor);
   });
 
-  caja2.addEventListener("click", () => {
-    if (caja2.style.backgroundColor === colorCorrecto && aciertos < 3) {
-      aciertos++;
-      ContadorAciertos.textContent = aciertos;
-      if (aciertos === 3) {
-        alert("🏆 🏆¡Enhorabuena, has ganado! 🏆 🏆");
-        reiniciarJuego();
-      }
-    } else if (caja2.style.backgroundColor !== colorCorrecto && fallos < 3) {
-      fallos++;
-      ContadorFallos.textContent = fallos;
-      if (fallos === 3) {
-        alert("💩 💩 BUUUU mantaaa 💩 💩");
-        reiniciarJuego();
-      }
-    }
+  caja2.addEventListener("click", function () {
+    verificarRespuesta(caja2.style.backgroundColor);
   });
 
-  caja3.addEventListener("click", () => {
-    if (caja3.style.backgroundColor === colorCorrecto && aciertos < 3) {
-      aciertos++;
-      ContadorAciertos.textContent = aciertos;
-      if (aciertos === 3) {
-        alert("🏆 🏆¡Enhorabuena, has ganado! 🏆 🏆");
-        reiniciarJuego();
-      }
-    } else if (caja3.style.backgroundColor !== colorCorrecto && fallos < 3) {
-      fallos++;
-      ContadorFallos.textContent = fallos;
-      if (fallos === 3) {
-        alert("💩 💩 BUUUU mantaaa 💩 💩");
-        reiniciarJuego();
-      }
-    }
+  caja3.addEventListener("click", function () {
+    verificarRespuesta(caja3.style.backgroundColor);
   });
 }
+//
+// creamos la funcion de verificacion en cada evento y asignamos condicional ,luego con el else volvemos a llamar a que nos genere codigo y colores diferentes
+//
+function verificarRespuesta(color) {
+  if (color === codigoCorrecto) {
+    aciertos++;
+    document.getElementById("aciertos").textContent = aciertos;
+    if (aciertos === 3) {
+      alert("🏆 🏆¡Enhorabuena, has ganado! 🏆 🏆");
+      reiniciarJuego();
+    } else {
+      generarCodigo();
+      generarColores();
+    }
+  } else {
+    fallos++;
+    document.getElementById("fallos").textContent = fallos;
+    if (fallos === 3) {
+      alert("💩 💩 BUUUU mantaaa 💩 💩");
+      reiniciarJuego();
+    }
+  }
+}
+//
+// funcion que reinica el juego con los valores a 0 y volvemos a llamar a que genere codigo y colores nuevos
+//
 
-// Creamos una funcion para el reinicio y que quite los eventos que puede dar problemas
 function reiniciarJuego() {
-  //Dejamos contadores a 0
   aciertos = 0;
   fallos = 0;
-
-  //Identificamos dónde hay que escribir un 0
-  const ContadorAciertos = document.getElementById("contador-aciertos");
-  const ContadorFallos = document.getElementById("contador-fallos");
-
-  //Escribimos un 0 en los contadores
-  ContadorAciertos.textContent = aciertos;
-  ContadorFallos.textContent = fallos;
-
-  // //Quitamos eventos
-  caja1.removeEventListener("click", verificarRespuesta);
-  caja2.removeEventListener("click", verificarRespuesta);
-  caja3.removeEventListener("click", verificarRespuesta);
-
-  //En vez de llamar a la funcion iniciar juego, recargamos la página que dá menos problemas
-  location.reload();
+  document.getElementById("aciertos").textContent = aciertos;
+  document.getElementById("fallos").textContent = fallos;
+  generarCodigo();
+  generarColores();
 }
